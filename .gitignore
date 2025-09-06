@@ -20,4 +20,11 @@ Thumbs.db
 node_modules/
 dist/
 *.log
+# Ignore environment/venv folders
+Lib/
+Scripts/
+etc/
+*.pyc
+*.pkl
+
 
