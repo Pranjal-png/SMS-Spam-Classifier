@@ -1,5 +1,6 @@
 import streamlit as st
 import pickle
+<<<<<<< HEAD
 import nltk
 
 # Download required NLTK datasets
@@ -9,6 +10,11 @@ nltk.download('stopwords')  # if you are using stopwords anywhere
 import string
 from nltk.corpus import stopwords
 
+=======
+import string
+from nltk.corpus import stopwords
+import nltk
+>>>>>>> 969e42e1e2b3f0fd622239f49b3abc453f76241f
 from nltk.stem.porter import PorterStemmer
 
 ps = PorterStemmer()
