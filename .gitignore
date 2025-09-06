@@ -1,30 +1,47 @@
-# Byte-compiled / cache files
+# ---- Python ----
 __pycache__/
 *.py[cod]
 *.pyo
+*.pyd
+*.so
+*.dylib
+*.dll
 
-# Virtual environment
-venv/
-env/
-
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints/
-
-# VS Code settings
-.vscode/
-
-# macOS / Windows system files
-.DS_Store
-Thumbs.db
-
-node_modules/
-dist/
-*.log
-# Ignore environment/venv folders
+# ---- Virtual Environments ----
 Lib/
 Scripts/
 etc/
-*.pyc
-*.pkl
+bin/
+obj/
+include/
+venv/
+ENV/
+env/
+.venv/
 
+# ---- Jupyter ----
+.ipynb_checkpoints/
 
+# ---- System Files ----
+.DS_Store
+Thumbs.db
+
+# ---- Logs ----
+*.log
+
+# ---- Cache ----
+*.cache/
+*.pytest_cache/
+*.mypy_cache/
+
+# ---- Model / Large files ----
+*.h5
+*.pt
+*.ckpt
+*.joblib
+
+# ---- Allow specific files ----
+!model.pkl
+!vectorizer.pkl
+!requirements.txt
+!app.py
