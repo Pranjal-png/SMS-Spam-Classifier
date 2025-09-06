@@ -6,8 +6,12 @@ from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 
 # ===============================
-# Use local NLTK data folder
+# Download NLTK resources
 # ===============================
+nltk.download('punkt')
+nltk.download('stopwords')
+
+# Optional: use local nltk_data folder
 nltk.data.path.append("nltk_data")
 
 ps = PorterStemmer()
@@ -50,16 +54,10 @@ input_sms = st.text_area("Enter the message here:")
 
 if st.button("Predict"):
     if input_sms.strip() != "":
-        # Transform text
         transformed_sms = transform_text(input_sms)
-
-        # Vectorize input
         vector_input = tfidf.transform([transformed_sms])
-
-        # Predict
         result = model.predict(vector_input)[0]
 
-        # Display result
         if result == 1:
             st.header("Spam 🚫")
         else:
