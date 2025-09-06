@@ -2,17 +2,29 @@ import streamlit as st
 import pickle
 import string
 import nltk
+import os
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 
 # ===============================
-# Download NLTK resources
+# Setup NLTK data folder
 # ===============================
-nltk.download('punkt')
-nltk.download('stopwords')
+nltk_data_dir = os.path.join(os.path.dirname(__file__), "nltk_data")
+os.makedirs(nltk_data_dir, exist_ok=True)
 
-# Optional: use local nltk_data folder
-nltk.data.path.append("nltk_data")
+# Tell NLTK to use this folder
+nltk.data.path.append(nltk_data_dir)
+
+# Download required resources if not already available
+try:
+    nltk.data.find("tokenizers/punkt")
+except LookupError:
+    nltk.download("punkt", download_dir=nltk_data_dir)
+
+try:
+    nltk.data.find("corpora/stopwords")
+except LookupError:
+    nltk.download("stopwords", download_dir=nltk_data_dir)
 
 ps = PorterStemmer()
 
@@ -20,22 +32,31 @@ ps = PorterStemmer()
 # Text preprocessing function
 # ===============================
 def transform_text(text):
-    text = text.lower()  # convert to lowercase
-    text = nltk.word_tokenize(text)  # tokenize
+    text = text.lower()
+    text = nltk.word_tokenize(text)  # requires punkt
 
-    # Remove non-alphanumeric tokens
-    text = [word for word in text if word.isalnum()]
+    y = []
+    for i in text:
+        if i.isalnum():
+            y.append(i)
 
-    # Remove stopwords and punctuation
-    text = [word for word in text if word not in stopwords.words('english') and word not in string.punctuation]
+    text = y[:]
+    y.clear()
 
-    # Apply stemming
-    text = [ps.stem(word) for word in text]
+    for i in text:
+        if i not in stopwords.words('english') and i not in string.punctuation:
+            y.append(i)
 
-    return " ".join(text)
+    text = y[:]
+    y.clear()
+
+    for i in text:
+        y.append(ps.stem(i))
+
+    return " ".join(y)
 
 # ===============================
-# Load model and vectorizer with caching
+# Load model and vectorizer
 # ===============================
 @st.cache_resource
 def load_model():
@@ -46,7 +67,7 @@ def load_model():
 tfidf, model = load_model()
 
 # ===============================
-# Streamlit App UI
+# Streamlit UI
 # ===============================
 st.title("Email/SMS Spam Classifier")
 
