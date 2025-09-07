@@ -1,28 +1,22 @@
-# SMS Spam Classifier
+# 📧 SMS Spam Classifier
 
-This ML model detects whether an SMS message is **spam** or **(not spam)**.
+A Machine Learning web app that detects whether an SMS/Email message is **Spam 🚫** or **Not Spam ✅**.  
+Built with **Python, Scikit-learn, NLTK, and Streamlit**.
 
-## Tech Stack
+---
+
+## 🚀 Live Demo
+
+👉 [Click here to try the app](https://sms-spam-classifier-nwcc8tchqczxjzadyuunzq.streamlit.app/)
+
+---
+
+## 🛠 Tech Stack
 
 - Python
-- Pandas , Numpy
+- Pandas, Numpy
 - Scikit-learn
-- NTLK
-- Streamlit(for deployment)
+- NLTK
+- Streamlit (for deployment)
 
-## How to Run
-
-1. **Clone this repository**
-
-   ````bash
-   git clone
-   https://github.com/Pranjal-png/SMS-Spam-Classifier.git
-   cd Sms-Spam-Classifier```
-
-   ````
-
-2. **Install the dependencies**
-   `pip install -r requirements.txt`
-
-3. **Run the app**
-   `streamlit run app.py`
+---
